@@ -3,69 +3,80 @@ import { portfolioData } from '../data/portfolioData';
 
 export default function BootScreen({ onComplete }) {
   const { personal } = portfolioData;
-  const [phase, setPhase] = useState('enter'); // enter → loading → welcome → exit
+  const [phase, setPhase] = useState('lock'); // lock → signing → exit
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    // Phase timeline
-    const t1 = setTimeout(() => setPhase('loading'), 600);   // show loader
-    const t2 = setTimeout(() => setPhase('welcome'), 2800);  // show Welcome
-    const t3 = setTimeout(() => setPhase('exit'), 4000);     // start fade out
-    const t4 = setTimeout(() => onComplete(), 4700);         // unmount
-
-    return () => [t1, t2, t3, t4].forEach(clearTimeout);
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
   }, []);
 
+  const handleSignIn = () => {
+    if (phase !== 'lock') return;
+    setPhase('signing');
+    
+    // Auto transition to desktop after signing in animation
+    setTimeout(() => {
+      setPhase('exit');
+      setTimeout(() => onComplete(), 800);
+    }, 3000);
+  };
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+  };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+  };
+
   return (
-    <div style={{ ...styles.overlay, opacity: phase === 'exit' ? 0 : 1 }}>
+    <div 
+      style={{ ...styles.overlay, opacity: phase === 'exit' ? 0 : 1 }}
+      onClick={handleSignIn}
+    >
+      {/* Background with mica/blur effect */}
+      <div style={{
+        ...styles.bg,
+        filter: phase === 'signing' ? 'blur(40px) brightness(0.7)' : 'blur(0px) brightness(1)',
+        transition: 'filter 1s ease',
+      }} />
 
-      {/* Blurred background */}
-      <div style={styles.bg} />
-
-      {/* Center content */}
-      <div style={styles.center}>
-
-        {/* Avatar ring glow */}
-        <div style={{
-          ...styles.avatarRing,
-          transform: phase === 'enter' ? 'scale(0.7)' : 'scale(1)',
-          opacity: phase === 'enter' ? 0 : 1,
-        }}>
-          <div style={styles.avatarGlow} />
-          <img src="/boot-laptop.png" alt="AI Coder" style={styles.avatar} />
+      {/* Lock Screen UI */}
+      {phase === 'lock' && (
+        <div style={styles.lockContent}>
+          <div style={styles.time}>{formatTime(time)}</div>
+          <div style={styles.date}>{formatDate(time)}</div>
+          <div style={styles.signInPrompt}>Click anywhere to sign in</div>
         </div>
+      )}
 
-        {/* Name */}
-        <div style={{
-          ...styles.name,
-          opacity: phase === 'enter' ? 0 : 1,
-          transform: phase === 'enter' ? 'translateY(12px)' : 'translateY(0)',
-        }}>
-          {personal.firstName} {personal.lastName}
-        </div>
+      {/* Signing In UI */}
+      {phase === 'signing' && (
+        <div style={styles.signingContent}>
+          <div style={styles.avatarContainer}>
+            <img 
+              src={personal.profileImage} 
+              alt={personal.firstName} 
+              style={styles.avatar} 
+            />
+          </div>
+          
+          <div style={styles.name}>
+            {personal.firstName} {personal.lastName}
+          </div>
 
-        {/* Role */}
-        <div style={{
-          ...styles.role,
-          opacity: phase === 'enter' ? 0 : 1,
-        }}>
-          {personal.role}
-        </div>
+          <div style={styles.welcomeRow}>
+            <div style={styles.welcomeText}>Welcome</div>
+          </div>
 
-        {/* Loader dots */}
-        {phase === 'loading' && (
           <div style={styles.dotsRow}>
             {[0, 1, 2, 3, 4].map(i => (
               <div key={i} style={{ ...styles.dot, animationDelay: `${i * 0.15}s` }} />
             ))}
           </div>
-        )}
-
-        {/* Welcome text */}
-        {phase === 'welcome' && (
-          <div style={styles.welcome}>Welcome</div>
-        )}
-
-      </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -78,90 +89,105 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'rgba(10, 10, 20, 0.92)',
-    backdropFilter: 'blur(30px)',
-    WebkitBackdropFilter: 'blur(30px)',
-    transition: 'opacity 0.7s ease',
+    background: '#000',
+    cursor: 'pointer',
+    transition: 'opacity 0.8s ease',
+    overflow: 'hidden',
   },
   bg: {
     position: 'absolute',
     inset: 0,
-    background: 'radial-gradient(ellipse at 50% 40%, rgba(99,102,241,0.18) 0%, rgba(168,85,247,0.1) 40%, transparent 75%)',
-    pointerEvents: 'none',
+    backgroundImage: "url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    zIndex: 0,
   },
-  center: {
+  lockContent: {
+    position: 'relative',
+    zIndex: 1,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '18px',
+    color: '#fff',
+    textShadow: '0 2px 20px rgba(0,0,0,0.3)',
+    animation: 'fadeIn 1s ease forwards',
+  },
+  time: {
+    fontSize: '110px',
+    fontWeight: '700',
+    fontFamily: "'Outfit', sans-serif",
+    letterSpacing: '-2px',
+  },
+  date: {
+    fontSize: '24px',
+    fontWeight: '400',
+    marginTop: '-10px',
+    opacity: 0.9,
+  },
+  signInPrompt: {
+    marginTop: '60px',
+    fontSize: '16px',
+    fontWeight: '300',
+    opacity: 0.7,
+    letterSpacing: '1px',
+    animation: 'pulse 2s infinite',
+  },
+  signingContent: {
     position: 'relative',
     zIndex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '20px',
+    animation: 'fadeIn 0.6s ease forwards',
   },
-  avatarRing: {
-    position: 'relative',
-    width: '210px',
-    height: '210px',
-    borderRadius: '28px',
-    transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    border: '2px solid rgba(168, 85, 247, 0.55)',
-    boxShadow: '0 0 0 8px rgba(99,102,241,0.1), 0 0 60px rgba(99,102,241,0.4)',
-    overflow: 'hidden',
-  },
-  avatarGlow: {
-    position: 'absolute',
-    inset: '-8px',
+  avatarContainer: {
+    width: '180px',
+    height: '180px',
     borderRadius: '50%',
-    background: 'radial-gradient(circle, rgba(168,85,247,0.3), transparent 70%)',
-    filter: 'blur(12px)',
-    animation: 'pulse 2.5s ease-in-out infinite',
+    border: '2px solid rgba(255,255,255,0.2)',
+    padding: '4px',
+    background: 'rgba(255,255,255,0.1)',
+    backdropFilter: 'blur(10px)',
+    boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
   },
   avatar: {
     width: '100%',
     height: '100%',
-    borderRadius: '0',
+    borderRadius: '50%',
     objectFit: 'cover',
-    objectPosition: 'center',
   },
   name: {
-    color: '#ffffff',
-    fontSize: '28px',
-    fontWeight: '700',
+    color: '#fff',
+    fontSize: '32px',
+    fontWeight: '600',
     fontFamily: "'Outfit', sans-serif",
-    letterSpacing: '0.5px',
-    transition: 'all 0.7s ease 0.2s',
-    textShadow: '0 2px 20px rgba(168,85,247,0.4)',
+    marginTop: '10px',
   },
-  role: {
-    color: 'rgba(168,85,247,0.85)',
-    fontSize: '14px',
-    fontWeight: '500',
-    fontFamily: "'Inter', sans-serif",
-    letterSpacing: '2px',
+  welcomeRow: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    marginTop: '-5px',
+  },
+  welcomeText: {
+    color: 'rgba(255,255,255,0.9)',
+    fontSize: '20px',
+    fontWeight: '300',
+    letterSpacing: '4px',
     textTransform: 'uppercase',
-    transition: 'opacity 0.6s ease 0.4s',
-    marginTop: '-8px',
   },
   dotsRow: {
     display: 'flex',
-    gap: '10px',
-    marginTop: '12px',
-    alignItems: 'center',
+    gap: '8px',
+    marginTop: '5px',
   },
   dot: {
-    width: '8px',
-    height: '8px',
+    width: '6px',
+    height: '6px',
     borderRadius: '50%',
-    background: 'rgba(255,255,255,0.75)',
+    background: '#fff',
     animation: 'win11Dot 1.2s ease-in-out infinite',
   },
-  welcome: {
-    marginTop: '12px',
-    color: 'rgba(255,255,255,0.9)',
-    fontSize: '22px',
-    fontWeight: '300',
-    fontFamily: "'Outfit', sans-serif",
-    letterSpacing: '6px',
-    textTransform: 'uppercase',
-    animation: 'fadeIn 0.6s ease forwards',
-  },
 };
+

@@ -6,8 +6,10 @@ import {
   Settings, 
   Image, 
   Briefcase, 
-  Contact 
+  Contact,
+  Award
 } from 'lucide-react';
+
 
 const navItems = [
   { name: 'Home', icon: Home, color: '#e53935' },
@@ -16,7 +18,9 @@ const navItems = [
   { name: 'Skills', icon: Settings, color: '#546e7a' },
   { name: 'Gallery', icon: Image, color: '#039be5' },
   { name: 'Projects', icon: Briefcase, color: '#fbc02d' },
+  { name: 'Certifications', icon: Award, color: '#9c27b0' },
   { name: 'Contact', icon: Contact, color: '#00acc1' },
+
 ];
 
 export default function Sidebar({ activeTab, setActiveTab }) {

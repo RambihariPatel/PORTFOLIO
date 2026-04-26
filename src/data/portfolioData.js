@@ -153,6 +153,122 @@ export const portfolioData = {
   gallery: [
     "https://res.cloudinary.com/doztsy52l/image/upload/v1777033227/Screenshot_2026-04-24_174916_isxdhc.png",
     "https://res.cloudinary.com/doztsy52l/image/upload/v1777033237/Screenshot_2026-04-24_174931_cilnhk.png",
-    "https://via.placeholder.com/400x200"
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1777108800/Screenshot_2026-04-25_144931_gsdwa3.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1777108687/Screenshot_2026-04-25_144751_hwelzy.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1777108363/Screenshot_2026-04-25_144220_t3tz8p.png"
+  ],
+
+  // 6. CERTIFICATIONS
+  certifications: [
+    {
+      category: "NPTEL / Academic",
+      items: [
+        {
+          title: "Python Programming",
+          issuer: "NPTEL (IIT Madras)",
+          date: "2025",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777126268/Screenshot_2026-04-25_194003_z6a0ow.png"
+        },
+        {
+          title: "Database Management System",
+          issuer: "NPTEL (IIT Kharagpur)",
+          date: "2026",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777126339/Screenshot_2026-04-25_193849_n1anou.png"
+        }
+      ]
+    },
+    {
+      category: "Course",
+      items: [
+        {
+          title: "BUILD YOUR STATIC WEBSITE",
+          issuer: "NxtWave",
+          date: "2024",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777130835/Screenshot_2026-04-25_205354_tbvmcs.png"
+        },
+        {
+          title: "BUILD YOUR RESPONSIVE WEBSITE",
+          issuer: "Nxtwave",
+          date: "2024",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777133285/Screenshot_2026-04-25_191535_ougtqq.png"
+        },
+        {
+          title: "BUILD YOUR OWN DYNAMIC WEBSITE",
+          issuer: "NxtWave",
+          date: "2024",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777133565/Screenshot_2026-04-25_214137_klatrq.png"
+        },
+        
+        {
+          title: "JavaScript Essentials",
+          issuer: "Nxtwave",
+          date: "2025",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777133704/Screenshot_2026-04-25_204615_wf3skc.png"
+        },
+        {
+          title: "INTRODUCTION TO DATABASES",
+          issuer: "Nxtwave",
+          date: "2025",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777133921/Screenshot_2026-04-25_191455_n5msro.png"
+        },
+        {
+          title: "PROGRAMMING WITH PYTHON",
+          issuer: "Nxtwave",
+          date: "2025",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777134027/Screenshot_2026-04-25_204949_-_Copy_ifncl2.png"
+        },
+
+        {
+          title: "XPM 4.0",
+          issuer: "Nxtwave",
+          date: "2026",          
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777134148/Screenshot_2026-04-25_204645_zuwosp.png"
+        }
+
+
+
+      ]
+    },
+    {
+      category: "Hackathon",
+      items: [
+        { title: "TECHNOCRATS INNOVATION CHALLENGE", position: "Participant", date: "2026", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777126481/WhatsApp_Image_2026-04-25_at_6.23.35_PM_2_k7r92r.jpg" },
+        { title: "LAKESITY HACK", position: "Participant", date: "2024", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777126740/WhatsApp_Image_2026-04-25_at_6.23.32_PM_r3twxn.jpg" }
+      ]
+    },
+    {
+      category: "Podcast",
+      items: [
+        { title: "What Google Looks for in Future Engineers", host: "Nxtwave", date: "2024", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777135224/Screenshot_2026-04-25_191353_-_Copy_wimdsr.png" },
+        { title: "From Resume To Offer", host: "Nxtwave", date: "2024", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777135319/Screenshot_2026-04-25_191418_rvq8qn.png" },
+        { title: "Your Next Big Career Opportunity: Autonomous Vehicle", host: "Nxtwave", date: "2024", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777135468/Screenshot_2026-04-25_191517_es6j70.png" },
+        { title: "Brain Fitness for High Achievers", host: "Nxtwave", date: "2024", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777135568/Screenshot_2026-04-25_191657_slh3mt.png" },
+        { title: "Building Job Ready Skills in the AI Era", host: "Nxtwave", date: "2025", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777135871/WhatsApp_Image_2026-01-29_at_2.27.04_PM_1_e2ct04.jpg" },
+        { title: "AI Workflows & Automation Workshop using", host: "Nxtwave", date: "2025", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777135994/WhatsApp_Image_2026-01-29_at_2.27.04_PM_yljoir.jpg" },
+        
+
+      ]
+    },
+    {
+      category: "Training",
+      items: [
+        { title: "Industrial Training in c++", company: "Tech Solutions", date: "2023", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1721148827/internship_svj7nt.jpg" },
+        { title: "Industrial Training On Data Science & ML", company: "Tech Solutions", date: "2023", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777125820/Sage_Winter_Certificate_psjzam.jpg" },
+        { title: "Crack CODE in LEET CODE", company: "CodeWave Solution", date: "2025",  link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777134773/WhatsApp_Image_2026-04-25_at_6.23.36_PM_wtnbba.jpg"},
+        { title: "NxtCode-AI-Powered Challenge: 25 Under 5", company: "Nxtwave", date: "2025",  link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777135644/Screenshot_2026-04-25_191717_pkdjxb.png"},
+        { title: "Achieve the 5 Day Milestone In Frontend Developer", company: "Nxtwave", date: "2025",  link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777136094/Screenshot_2026-04-25_191717_n9zu42.png"}
+      ]
+
+
+    },
+    {
+      category: "Attendance",
+      items: [
+        { title: "Architecture job simulation", event: "AWS", date: "2025", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777134381/Screenshot_2026-04-25_191748_r26y7h.png" },
+        { title: "AI Tool & Chatgpt Workshop", event: "be10X", date: "2025", link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777134532/be10x_AI_workshop_p6etfg.jpg" },
+      ]
+    }
   ]
 };
+
+

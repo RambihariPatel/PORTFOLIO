@@ -8,11 +8,30 @@ import Skills from './views/Skills';
 import Projects from './views/Projects';
 import Contact from './views/Contact';
 import Gallery from './views/Gallery';
+import Certifications from './views/Certifications';
+
 
 export default function Window({ activeTab, setActiveTab, onClose, onMinimize }) {
   const [isMaximized, setIsMaximized] = useState(false);
 
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    setTimeout(() => setIsRefreshing(false), 800);
+  };
+
   const renderContent = () => {
+    if (isRefreshing) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', gap: '15px', color: '#0078D4' }}>
+          <div className="animate-rotate">
+            <RotateCw size={24} />
+          </div>
+          <span style={{ fontWeight: 500 }}>Refreshing...</span>
+        </div>
+      );
+    }
     switch(activeTab) {
       case 'Home': return <Home setActiveTab={setActiveTab} />;
       case 'About': return <About />;
@@ -21,6 +40,8 @@ export default function Window({ activeTab, setActiveTab, onClose, onMinimize })
       case 'Projects': return <Projects />;
       case 'Contact': return <Contact />;
       case 'Gallery': return <Gallery />;
+      case 'Certifications': return <Certifications />;
+
       default: return <Home setActiveTab={setActiveTab} />;
     }
   };
@@ -48,7 +69,13 @@ export default function Window({ activeTab, setActiveTab, onClose, onMinimize })
         <div style={styles.navIcons}>
           <ArrowLeft size={18} color="#999" style={{ margin: '0 8px' }} />
           <ArrowRight size={18} color="#999" style={{ margin: '0 8px' }} />
-          <RotateCw size={16} color="#333" style={{ margin: '0 8px' }} />
+          <RotateCw 
+            size={16} 
+            color="#333" 
+            style={{ margin: '0 8px', cursor: 'pointer' }} 
+            className={isRefreshing ? 'animate-rotate' : ''}
+            onClick={handleRefresh}
+          />
         </div>
         <div style={styles.addressInputContainer}>
           <span style={{ margin: '0 8px', color: '#666' }}>This PC &gt; {activeTab}</span>

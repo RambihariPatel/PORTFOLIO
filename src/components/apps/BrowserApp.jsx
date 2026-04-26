@@ -3,6 +3,12 @@ import { Minus, Square, X, ArrowLeft, ArrowRight, RotateCw, Home, Search } from 
 
 export default function BrowserApp({ onClose, onMinimize }) {
   const [isMaximized, setIsMaximized] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    setTimeout(() => setIsRefreshing(false), 1200);
+  };
 
   return (
     <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}}>
@@ -25,7 +31,13 @@ export default function BrowserApp({ onClose, onMinimize }) {
         <div style={styles.navLayout}>
           <ArrowLeft size={16} color="#666" style={{ margin: '0 8px' }} />
           <ArrowRight size={16} color="#ccc" style={{ margin: '0 8px' }} />
-          <RotateCw size={16} color="#666" style={{ margin: '0 8px' }} />
+          <RotateCw 
+            size={16} 
+            color="#666" 
+            style={{ margin: '0 8px', cursor: 'pointer' }} 
+            onClick={handleRefresh}
+            className={isRefreshing ? 'animate-rotate' : ''}
+          />
           <Home size={16} color="#666" style={{ margin: '0 8px' }} />
         </div>
         <div style={styles.addressInput}>
@@ -34,16 +46,25 @@ export default function BrowserApp({ onClose, onMinimize }) {
       </div>
 
       <div style={styles.contentArea}>
-        <div style={styles.fakeGoogle}>
-          <Search size={40} color="#4285F4" style={{ marginBottom: 20 }} />
-          <h1>Search the web</h1>
-          <div style={styles.fakeSearchBox}>
-            your awesome portfolio
+        {isRefreshing ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+            <div className="animate-rotate">
+              <RotateCw size={40} color="#4285F4" />
+            </div>
+            <span style={{ color: '#666', fontSize: '18px' }}>Loading...</span>
           </div>
-          <p style={{ marginTop: 20, color: '#666' }}>
-            Normally you can place an `<iframe />` here pointing to your blog or LinkedIn!
-          </p>
-        </div>
+        ) : (
+          <div style={styles.fakeGoogle}>
+            <Search size={40} color="#4285F4" style={{ marginBottom: 20 }} />
+            <h1>Search the web</h1>
+            <div style={styles.fakeSearchBox}>
+              your awesome portfolio
+            </div>
+            <p style={{ marginTop: 20, color: '#666' }}>
+              Normally you can place an `<iframe />` here pointing to your blog or LinkedIn!
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
