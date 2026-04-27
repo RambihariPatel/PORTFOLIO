@@ -20,7 +20,7 @@ function App() {
   const [activeApp, setActiveApp] = useState('explorer');
   const [minimizedApps, setMinimizedApps] = useState([]);
   const [openApps, setOpenApps] = useState(['explorer']);
-  const [isLocked, setIsLocked] = useState(false);
+  const [isLocked, setIsLocked] = useState(true);
   const idleTimer = useRef(null);
   const [initialized, setInitialized] = useState(false);
 
@@ -38,14 +38,16 @@ function App() {
       'vscode': 'vscode', 'mail': 'mail', 'browser': 'browser', 'tictactoe': 'tictactoe'
     };
 
-    if (path === '' || tabMap[path]) {
-      const tab = tabMap[path] || 'Home';
+    if (path === '') {
+      if (booting && !initialized) setBooting(false);
+    } else if (tabMap[path]) {
+      const tab = tabMap[path];
       if (activeTab !== tab) setActiveTab(tab);
       
       setOpenApps(prev => prev.includes('explorer') ? prev : [...prev, 'explorer']);
       if (activeApp !== 'explorer') setActiveApp('explorer');
       
-      if (path !== '' && booting && !initialized) setBooting(false);
+      if (booting && !initialized) setBooting(false);
     } else if (appMap[path]) {
       const app = appMap[path];
       setOpenApps(prev => prev.includes(app) ? prev : [...prev, app]);
@@ -102,20 +104,19 @@ function App() {
   }, [resetIdleTimer]);
 
   const closeApp = (appId) => {
-    setOpenApps(prev => {
-      const newApps = prev.filter(a => a !== appId);
-      // If we close the current app, fallback to desktop (/) or another app
-      if (activeApp === appId) {
-        if (newApps.length > 0) {
-          handleAppOpen(newApps[newApps.length - 1]);
-        } else {
-          setActiveApp(null);
-          navigate('/');
-        }
-      }
-      return newApps;
-    });
+    const newApps = openApps.filter(a => a !== appId);
+    setOpenApps(newApps);
     setMinimizedApps(prev => prev.filter(a => a !== appId));
+    
+    // If we close the current app, fallback to desktop (/) or another app
+    if (activeApp === appId) {
+      if (newApps.length > 0) {
+        handleAppOpen(newApps[newApps.length - 1]);
+      } else {
+        setActiveApp(null);
+        navigate('/');
+      }
+    }
   };
 
   const toggleMinimize = (appId) => {
@@ -211,9 +212,13 @@ function App() {
       )}
 
       <div style={{
-        opacity: booting ? 0 : 1,
+        opacity: booting || isLocked ? 0 : 1,
         transition: 'opacity 0.6s ease',
-        display: 'contents'
+        pointerEvents: booting || isLocked ? 'none' : 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        height: '100%'
       }}>
         {/* Render persistent apps */}
         <div style={{ display: openApps.includes('explorer') && !isMinimized('explorer') ? 'block' : 'none' }}>

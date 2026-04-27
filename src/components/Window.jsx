@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import { Minus, Square, X, ArrowLeft, ArrowRight, RotateCw } from 'lucide-react';
+import { Minus, Square, X, ArrowLeft, ArrowRight, RotateCw, Menu } from 'lucide-react';
 import Home from './views/Home';
 import About from './views/About';
 import Education from './views/Education';
@@ -13,6 +13,7 @@ import Certifications from './views/Certifications';
 
 export default function Window({ activeTab, setActiveTab, onClose, onMinimize }) {
   const [isMaximized, setIsMaximized] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -47,7 +48,7 @@ export default function Window({ activeTab, setActiveTab, onClose, onMinimize })
   };
 
   return (
-    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}}>
+    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}} className="window-frame-mobile">
       <div style={styles.titleBar}>
         <div style={styles.titleBarLeft}>
           <div style={styles.tabContainer}>
@@ -67,8 +68,15 @@ export default function Window({ activeTab, setActiveTab, onClose, onMinimize })
 
       <div style={styles.addressBar}>
         <div style={styles.navIcons}>
-          <ArrowLeft size={18} color="#999" style={{ margin: '0 8px' }} />
-          <ArrowRight size={18} color="#999" style={{ margin: '0 8px' }} />
+          <Menu 
+            size={18} 
+            color="#333" 
+            style={{ margin: '0 8px', cursor: 'pointer' }} 
+            className="show-on-mobile"
+            onClick={() => setIsSidebarOpen(true)}
+          />
+          <ArrowLeft size={18} color="#999" style={{ margin: '0 8px' }} className="hide-on-mobile" />
+          <ArrowRight size={18} color="#999" style={{ margin: '0 8px' }} className="hide-on-mobile" />
           <RotateCw 
             size={16} 
             color="#333" 
@@ -77,17 +85,20 @@ export default function Window({ activeTab, setActiveTab, onClose, onMinimize })
             onClick={handleRefresh}
           />
         </div>
-        <div style={styles.addressInputContainer}>
+        <div style={styles.addressInputContainer} className="address-input-container">
           <span style={{ margin: '0 8px', color: '#666' }}>This PC &gt; {activeTab}</span>
         </div>
-        <div style={styles.searchInputContainer}>
+        <div style={styles.searchInputContainer} className="hide-on-mobile">
           <span style={{ margin: '0 8px', color: '#999', fontSize: 13 }}>Search This PC</span>
         </div>
       </div>
 
       <div style={styles.mainArea}>
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-        <div style={styles.contentArea}>
+        {isSidebarOpen && (
+          <div className="sidebar-overlay show-on-mobile" onClick={() => setIsSidebarOpen(false)} />
+        )}
+        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+        <div style={styles.contentArea} className="window-content-area">
           {renderContent()}
         </div>
       </div>

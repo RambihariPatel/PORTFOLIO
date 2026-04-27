@@ -23,13 +23,16 @@ const navItems = [
 
 ];
 
-export default function Sidebar({ activeTab, setActiveTab }) {
+export default function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }) {
   return (
-    <div style={styles.sidebar}>
+    <div style={styles.sidebar} className={`sidebar-container ${isOpen ? 'sidebar-open' : ''}`}>
       {navItems.map((item) => (
         <div 
           key={item.name}
-          onClick={() => setActiveTab(item.name)}
+          onClick={() => {
+            setActiveTab(item.name);
+            if (setIsOpen) setIsOpen(false);
+          }}
           style={{
             ...styles.navItem,
             ...(activeTab === item.name ? styles.navItemActive : {})

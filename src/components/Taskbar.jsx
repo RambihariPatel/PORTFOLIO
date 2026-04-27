@@ -13,7 +13,14 @@ import {
   Globe,
   Music,
   X,
-  Gamepad2
+  Gamepad2,
+  Sun,
+  Moon,
+  Cloud,
+  CloudRain,
+  CloudSnow,
+  CloudLightning,
+  CloudFog
 } from 'lucide-react';
 
 const playlist = [
@@ -33,6 +40,48 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
+
+  const [temperature, setTemperature] = useState(42);
+  const [weatherDesc, setWeatherDesc] = useState("Sunny");
+  const [WeatherIcon, setWeatherIcon] = useState(() => CloudSun);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          try {
+            const { latitude, longitude } = position.coords;
+            const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+            if (!apiKey) return;
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
+            const data = await res.json();
+            
+            if (data.main && data.weather) {
+              setTemperature(Math.round(data.main.temp));
+              const desc = data.weather[0].main; 
+              setWeatherDesc(desc);
+              
+              const id = data.weather[0].id;
+              if (id >= 200 && id < 300) setWeatherIcon(() => CloudLightning);
+              else if (id >= 300 && id < 600) setWeatherIcon(() => CloudRain);
+              else if (id >= 600 && id < 700) setWeatherIcon(() => CloudSnow);
+              else if (id >= 700 && id < 800) setWeatherIcon(() => CloudFog);
+              else if (id === 800) {
+                 const isDay = data.weather[0].icon.includes('d');
+                 setWeatherIcon(() => isDay ? Sun : Moon);
+              }
+              else if (id > 800) setWeatherIcon(() => Cloud);
+            }
+          } catch (e) {
+            console.error("Failed to fetch weather data", e);
+          }
+        },
+        (error) => {
+          console.log("Geolocation permission denied or error", error);
+        }
+      );
+    }
+  }, []);
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -127,17 +176,24 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
 
   return (
     <div style={styles.taskbar}>
-      <div style={styles.weatherWidget}>
-        <CloudSun size={20} color="#ffb020" style={{ fill: '#ffb020' }} />
+      <div style={styles.weatherWidget} className="hide-on-mobile">
+        <WeatherIcon size={20} color="#ffb020" style={{ fill: '#ffb020' }} />
         <div style={styles.weatherText}>
-          <span style={{ fontWeight: 600 }}>42 °C</span>
-          <span style={{ fontSize: '11px', color: '#555' }}>Sunny</span>
+          <span style={{ fontWeight: 600 }}>{temperature} °C</span>
+          <span style={{ fontSize: '11px', color: '#555' }}>{weatherDesc}</span>
         </div>
       </div>
 
-      <div style={styles.centerApps}>
+      <div className="show-on-mobile" style={{ display: 'none', alignItems: 'center', fontSize: '11px', color: '#333', fontWeight: 600 }}>
+        <span>{temperature}°C</span>
+        <span style={{ margin: '0 4px', color: '#999' }}>|</span>
+        <span style={{ whiteSpace: 'nowrap' }}>{formatTime(time)}</span>
+      </div>
+
+      <div style={styles.centerApps} className="taskbar-center-mobile">
         <div 
           style={styles.iconWrapper} 
+          className="taskbar-icon-mobile"
           onClick={() => setActiveApp(activeApp === 'start' ? null : 'start')}
         >
           <div style={styles.winIcon}>
@@ -148,7 +204,7 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
           </div>
         </div>
 
-        <div style={styles.searchBar} onClick={() => setActiveApp(activeApp === 'start' ? null : 'start')}>
+        <div style={styles.searchBar} className="hide-on-mobile search-bar-tablet" onClick={() => setActiveApp(activeApp === 'start' ? null : 'start')}>
           <Search size={16} color="#666" />
           <span style={{ marginLeft: '10px', color: '#666', fontSize: '13px' }}>Search</span>
         </div>
@@ -156,6 +212,7 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
         {/* Explorer */}
         <div 
           style={{...styles.iconWrapper, ...(isAppActive('explorer') ? styles.activeApp : {})}}
+          className="taskbar-icon-mobile"
           onClick={() => handleIconClick('explorer')}
         >
           <FolderClosed size={24} color="#fcc93d" style={{ fill: '#fcc93d' }} />
@@ -165,6 +222,7 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
         {/* VS Code */}
         <div 
           style={{...styles.iconWrapper, ...(isAppActive('vscode') ? styles.activeApp : {})}}
+          className="taskbar-icon-mobile"
           onClick={() => handleIconClick('vscode')}
         >
           <Code2 size={24} color="#007acc" />
@@ -174,6 +232,7 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
         {/* Mail */}
         <div 
           style={{...styles.iconWrapper, ...(isAppActive('mail') ? styles.activeApp : {})}}
+          className="taskbar-icon-mobile"
           onClick={() => handleIconClick('mail')}
         >
           <Mail size={24} color="#0078d4" />
@@ -183,6 +242,7 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
         {/* Browser */}
         <div 
           style={{...styles.iconWrapper, ...(isAppActive('browser') ? styles.activeApp : {})}}
+          className="taskbar-icon-mobile"
           onClick={() => handleIconClick('browser')}
         >
           <Globe size={24} color="#e53935" />
@@ -192,6 +252,7 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
         {/* Tic Tac Toe */}
         <div 
           style={{...styles.iconWrapper, ...(isAppActive('tictactoe') ? styles.activeApp : {})}}
+          className="taskbar-icon-mobile"
           onClick={() => handleIconClick('tictactoe')}
         >
           <Gamepad2 size={24} color="#8A2BE2" />
@@ -304,7 +365,7 @@ export default function Taskbar({ activeApp, openApps, minimizedApps, setActiveA
 
           <Battery size={16} color="#333" style={{ marginLeft: 8 }} />
         </div>
-        <div style={styles.timeDate}>
+        <div style={styles.timeDate} className="hide-on-mobile">
           <span>{formatTime(time)}</span>
           <span style={{ marginTop: '2px' }}>{formatDate(time)}</span>
         </div>
@@ -405,8 +466,9 @@ const styles = {
   trayArea: {
     display: 'flex',
     alignItems: 'center',
-    width: '150px',
+    width: 'auto', // Changed from 150px to auto
     justifyContent: 'flex-end',
+    marginLeft: 'auto',
   },
   trayIcons: {
     display: 'flex',

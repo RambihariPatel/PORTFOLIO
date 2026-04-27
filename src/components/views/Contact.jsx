@@ -26,7 +26,7 @@ export default function Contact() {
     setSubmitError(false);
     setSubmitSuccess(false);
 
-    const accessKey = "1af1c82d-bbe6-4872-93cb-f729017dd145";
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "1af1c82d-bbe6-4872-93cb-f729017dd145";
 
     const object = {
       ...formData,

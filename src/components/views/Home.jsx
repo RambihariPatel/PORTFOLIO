@@ -32,15 +32,15 @@ export default function Home({ setActiveTab }) {
   ];
 
   return (
-    <div style={styles.container} className="animate-fade-up">
-      <div style={styles.leftSide}>
+    <div style={styles.container} className="animate-fade-up home-container">
+      <div style={styles.leftSide} className="home-left-side">
         <div style={styles.greeting}>
           <span style={styles.wave}>👋</span> <span style={{ fontWeight: 500, color: '#666' }}>Hello World, I am</span>
         </div>
-        <h1 className="gradient-text-primary" style={styles.name}>{personal.firstName} {personal.lastName}</h1>
-        <p style={styles.title} className="brand-font">{personal.role}</p>
+        <h1 className="gradient-text-primary home-name" style={styles.name}>{personal.firstName} {personal.lastName}</h1>
+        <p style={styles.title} className="brand-font home-title">{personal.role}</p>
         
-        <div style={styles.foldersContainer}>
+        <div style={styles.foldersContainer} className="home-folders-container">
           <div className="interactive-icon-box" style={styles.folderBox} onClick={() => setActiveTab('Contact')}>
             <div style={styles.folderIconBg}>
               <FolderKanban size={48} color="#fcc93d" style={{ fill: '#fcc93d', filter: 'drop-shadow(0 4px 6px rgba(252,201,61,0.4))' }} />
@@ -74,7 +74,7 @@ export default function Home({ setActiveTab }) {
       </div>
 
       <div style={styles.rightSide}>
-        <div style={styles.orbitContainer}>
+        <div style={styles.orbitContainer} className="home-orbit-container">
           {/* Orbit ring lines */}
           <div style={styles.orbitRing1}></div>
           <div style={styles.orbitRing2}></div>
