@@ -52,7 +52,7 @@ Showcase my technical skills and projects
 Demonstrate frontend and full stack capabilities
 Provide recruiters a clear view of my work
 Build a strong online developer presence
-🔗 Live Demo
+🔗 Live Demo ...
 
 👉 https://rambihari-portfolio.netlify.app
 
