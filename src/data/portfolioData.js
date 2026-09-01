@@ -107,13 +107,69 @@ export const portfolioData = {
       repoLink: "#"
     },
     {
-      title: "AI Hub (In Progress)",
+      title: "AI Hub",
       description: "Building an AI-powered platform integrating GenAI APIs and automation workflows using n8n. It will provide features like AI chat, task automation, and smart productivity tools.",
       image: "https://via.placeholder.com/400x200",
       technologies: ["React.js", "Node.js", "n8n", "OpenAI API"],
-      liveLink: "#",
-      repoLink: "#"
+      liveLink: "https://ai-tools-hub-ram.vercel.app/",
+      repoLink: "https://github.com/RambihariPatel/AI-HUB"
     },
+
+    
+    {
+      title: "AI Finance Tracker",
+      description: "Built an AI-powered personal finance tracking web application to help users manage and analyze their income and expenses. Implemented a dynamic dashboard for financial insights, transaction management, and AI-assisted analysis. Focused on responsive UI, data handling, and integrating AI capabilities to provide a smarter and more convenient personal finance experience.",
+      image: "https://res.cloudinary.com/doztsy52l/image/upload/v1788275209/Screenshot_2026-09-01_203517_sqp74y.png",
+      technologies: ["React.js", "JavaScript", "HTML", "CSS", "AI / GenAI", "REST API", "OEPEN AI API" ,"MONGODB"],
+      liveLink: "https://finance-tracker-with-ai-ashen.vercel.app/",
+      repoLink: "https://github.com/RambihariPatel/Finance-Tracker-with-AI"
+    },
+
+
+  
+    {
+      title: "ASHA Triage AI",
+      description: "Built an AI-powered healthcare triage platform designed to assist ASHA workers and rural communities with preliminary symptom assessment and patient prioritization. The platform uses conversational AI to collect symptoms, identify potential health risks, and help determine the appropriate level of medical attention. Focused on creating an accessible, responsive interface and integrating AI-driven healthcare assistance for underserved communities.",
+      image: "https://res.cloudinary.com/doztsy52l/image/upload/v1788275583/Screenshot_2026-09-01_204157_kn79vg.png",
+      technologies: ["React.js", "JavaScript", "HTML", "CSS", "AI / GenAI", "REST API", "NODE.JS"],
+      liveLink: "https://asha-triage-ai.vercel.app/",
+      repoLink: "https://github.com/RambihariPatel/asha-triage-ai"
+    },
+
+  
+    {
+      title: "Intelligent Email Assistant",
+      description: "Built an AI-powered email assistant that helps users manage and interact with their emails more efficiently. Implemented an intelligent interface for email processing, automated assistance, and streamlined email workflows. Focused on AI integration, authentication, asynchronous API handling, and creating a responsive user experience.",
+      image: "https://res.cloudinary.com/doztsy52l/image/upload/v1788275723/Screenshot_2026-09-01_204510_bqyu4e.png",
+      technologies: ["React.js", "JavaScript", "HTML", "CSS", "AI / GenAI", "REST API"],
+      liveLink: "https://intelligent-email-assistant-three.vercel.app/login",
+      repoLink: "https://github.com/RambihariPatel/Intelligent-Email-Assistant"
+    },
+
+  
+    {
+      title: "College Discovery Platform",
+      description: "Built a responsive college discovery platform that helps students explore and compare colleges using relevant search and filtering options. Implemented college listings, search functionality, location-based discovery, and dynamic filters for finding institutions based on criteria such as state, city, fees, and ratings. Focused on creating an intuitive interface that makes college exploration faster and easier for students.",
+      image: "https://res.cloudinary.com/doztsy52l/image/upload/v1788275819/Screenshot_2026-09-01_204640_g4h4gv.png",
+      technologies: ["React.js", "JavaScript", "HTML", "CSS", "REST API"],
+      liveLink: "https://college-discovery-black.vercel.app/",
+      repoLink: "https://github.com/RambihariPatel/college-discovery"
+    },
+
+    
+    
+      {
+        title: "NutraLens",
+        description: "Built a smart nutrition-focused web application that helps users analyze food and nutrition-related information through an intuitive digital interface. Implemented a responsive user experience with AI-powered analysis capabilities, dynamic data handling, and API integration. Focused on making nutritional insights easier to understand and helping users make more informed food choices.",
+        image: "https://res.cloudinary.com/doztsy52l/image/upload/v1788276033/Screenshot_2026-09-01_205014_ifhjgc.png",
+        technologies: ["React.js", "JavaScript", "HTML", "CSS", "AI / GenAI", "REST API"],
+        liveLink: "https://nutralens-three.vercel.app/",
+        repoLink: "https://github.com/RambihariPatel/Nutralens"
+      },
+
+    
+
+
     {
       title: "Finance Dashboard",
       description: "Built an interactive finance dashboard for tracking revenue, expenses, and overall financial performance. Implemented dynamic data visualization, monthly analytics, and responsive UI for better insights. Focused on clean UI/UX and real-time data representation using modern frontend practices.",
@@ -152,10 +208,14 @@ export const portfolioData = {
   // 5. GALLERY IMAGES (Add URLs to your photos here)
   gallery: [
     "https://res.cloudinary.com/doztsy52l/image/upload/v1777033227/Screenshot_2026-04-24_174916_isxdhc.png",
-    "https://res.cloudinary.com/doztsy52l/image/upload/v1777033237/Screenshot_2026-04-24_174931_cilnhk.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1788275209/Screenshot_2026-09-01_203517_sqp74y.png",
     "https://res.cloudinary.com/doztsy52l/image/upload/v1777108800/Screenshot_2026-04-25_144931_gsdwa3.png",
     "https://res.cloudinary.com/doztsy52l/image/upload/v1777108687/Screenshot_2026-04-25_144751_hwelzy.png",
-    "https://res.cloudinary.com/doztsy52l/image/upload/v1777108363/Screenshot_2026-04-25_144220_t3tz8p.png"
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1777108363/Screenshot_2026-04-25_144220_t3tz8p.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1788275583/Screenshot_2026-09-01_204157_kn79vg.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1788275723/Screenshot_2026-09-01_204510_bqyu4e.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1788275819/Screenshot_2026-09-01_204640_g4h4gv.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1788276033/Screenshot_2026-09-01_205014_ifhjgc.png"
   ],
 
   // 6. CERTIFICATIONS
@@ -216,6 +276,13 @@ export const portfolioData = {
           issuer: "Nxtwave",
           date: "2025",
           link: "https://res.cloudinary.com/doztsy52l/image/upload/v1777134027/Screenshot_2026-04-25_204949_-_Copy_ifncl2.png"
+        },
+
+        {
+          title: "GIT AND COMMAND LINE",
+          issuer: "Nxtwave",
+          date: "2026",
+          link: "https://res.cloudinary.com/doztsy52l/image/upload/v1788274564/GIT_CERTIFICATE_rl2u3u.jpg"
         },
 
         {
