@@ -109,8 +109,8 @@ export const portfolioData = {
     {
       title: "AI Hub",
       description: "Building an AI-powered platform integrating GenAI APIs and automation workflows using n8n. It will provide features like AI chat, task automation, and smart productivity tools.",
-      image: "https://via.placeholder.com/400x200",
-      technologies: ["React.js", "Node.js", "n8n", "OpenAI API"],
+      image: "https://res.cloudinary.com/doztsy52l/image/upload/v1788350300/Screenshot_2026-09-02_172754_y5srfi.png",
+      technologies: ["React.js", "JavaScript", "HTML", "CSS", "Tailwind CSS", "LocalStorage", "MongoDB", "Express.js", "Node.js", "REST API Development"],
       liveLink: "https://ai-tools-hub-ram.vercel.app/",
       repoLink: "https://github.com/RambihariPatel/AI-HUB"
     },
@@ -215,7 +215,8 @@ export const portfolioData = {
     "https://res.cloudinary.com/doztsy52l/image/upload/v1788275583/Screenshot_2026-09-01_204157_kn79vg.png",
     "https://res.cloudinary.com/doztsy52l/image/upload/v1788275723/Screenshot_2026-09-01_204510_bqyu4e.png",
     "https://res.cloudinary.com/doztsy52l/image/upload/v1788275819/Screenshot_2026-09-01_204640_g4h4gv.png",
-    "https://res.cloudinary.com/doztsy52l/image/upload/v1788276033/Screenshot_2026-09-01_205014_ifhjgc.png"
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1788276033/Screenshot_2026-09-01_205014_ifhjgc.png",
+    "https://res.cloudinary.com/doztsy52l/image/upload/v1788350300/Screenshot_2026-09-02_172754_y5srfi.png"
   ],
 
   // 6. CERTIFICATIONS
