@@ -8,7 +8,7 @@ export const portfolioData = {
     bio: "Hello! I'm a passionate and creative Full Stack Developer dedicated to bringing ideas to life through code. I love building responsive, performant, and beautiful applications that provide great user experiences.",
     email: "rambiharipatel175@gmail.com",
     profileImage: "https://res.cloudinary.com/doztsy52l/image/upload/v1737787127/WhatsApp_Image_2025-01-25_at_12.06.24_d9fe90c7_nq1mwb.jpg",
-    resumeUrl: "/resume.pdf"
+    resumeUrl: "/master_resume.pdf"
   },
 
   // 2. EDUCATION
