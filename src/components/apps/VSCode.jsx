@@ -56,21 +56,21 @@ developer.greet();
   };
 
   return (
-    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}}>
+    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}} className="window-frame-mobile">
       <div style={styles.titleBar}>
         <div style={styles.titleBarLeft}>
           <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" style={styles.appIcon} alt="VS Code" />
-          <span style={styles.menuItem}>File</span>
-          <span style={styles.menuItem}>Edit</span>
-          <span style={styles.menuItem}>Selection</span>
-          <span style={styles.menuItem}>View</span>
+          <span style={styles.menuItem} className="hide-on-mobile">File</span>
+          <span style={styles.menuItem} className="hide-on-mobile">Edit</span>
+          <span style={styles.menuItem} className="hide-on-mobile">Selection</span>
+          <span style={styles.menuItem} className="hide-on-mobile">View</span>
           <span style={{...styles.menuItem, cursor: 'pointer', color: '#4caf50'}} onClick={runCode}>Run</span>
           <span style={{...styles.menuItem, cursor: 'pointer'}} onClick={() => setIsTerminalOpen(!isTerminalOpen)}>Terminal</span>
         </div>
-        <div style={styles.titleText}>{activeTab} - Visual Studio Code</div>
+        <div style={styles.titleText} className="hide-on-mobile">{activeTab} - VS Code</div>
         <div style={styles.titleBarRight}>
-          <div style={styles.controlIcon} onClick={onMinimize}><Minus size={16} /></div>
-          <div style={styles.controlIcon} onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={onMinimize}><Minus size={16} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
           <div style={{...styles.controlIcon, ...styles.closeIcon}} onClick={onClose}><X size={16} /></div>
         </div>
       </div>

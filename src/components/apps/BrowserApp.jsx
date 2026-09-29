@@ -11,7 +11,7 @@ export default function BrowserApp({ onClose, onMinimize }) {
   };
 
   return (
-    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}}>
+    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}} className="window-frame-mobile">
       <div style={styles.titleBar}>
         <div style={styles.titleBarLeft}>
           <div style={styles.tab}>
@@ -21,8 +21,8 @@ export default function BrowserApp({ onClose, onMinimize }) {
           <div style={{ marginLeft: 10, fontWeight: 300, cursor: 'pointer' }}>+</div>
         </div>
         <div style={styles.titleBarRight}>
-          <div style={styles.controlIcon} onClick={onMinimize}><Minus size={16} /></div>
-          <div style={styles.controlIcon} onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={onMinimize}><Minus size={16} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
           <div style={{...styles.controlIcon, ...styles.closeIcon}} onClick={onClose}><X size={16} /></div>
         </div>
       </div>

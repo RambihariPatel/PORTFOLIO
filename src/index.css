@@ -390,6 +390,20 @@ body, html, #root {
   }
   
   /* Taskbar Mobile Responsive */
+  .taskbar-center-mobile {
+    position: static !important;
+    transform: none !important;
+    overflow-x: auto;
+    width: auto !important;
+    flex: 1;
+    justify-content: flex-start !important;
+    padding: 0 10px;
+    margin: 0 10px;
+    scrollbar-width: none; /* Firefox */
+  }
+  .taskbar-center-mobile::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
 }
 
 @media (max-width: 1024px) {

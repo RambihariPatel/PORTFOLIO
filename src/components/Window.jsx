@@ -60,8 +60,8 @@ export default function Window({ activeTab, setActiveTab, onClose, onMinimize })
         </div>
 
         <div style={styles.titleBarRight}>
-          <div style={styles.controlIcon} onClick={onMinimize}><Minus size={16} /></div>
-          <div style={styles.controlIcon} onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={onMinimize}><Minus size={16} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
           <div style={{...styles.controlIcon, ...styles.closeIcon}} onClick={onClose}><X size={16} /></div>
         </div>
       </div>

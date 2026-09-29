@@ -46,14 +46,14 @@ export default function TicTacToe({ onClose, onMinimize }) {
   }
 
   return (
-    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}}>
+    <div style={{...styles.windowFrame, ...(isMaximized ? styles.maximized : styles.normal)}} className="window-frame-mobile">
       <div style={styles.titleBar}>
         <div style={styles.titleBarLeft}>
           <span style={styles.titleText}>Tic-Tac-Toe</span>
         </div>
         <div style={styles.titleBarRight}>
-          <div style={styles.controlIcon} onClick={onMinimize}><Minus size={16} /></div>
-          <div style={styles.controlIcon} onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={onMinimize}><Minus size={16} /></div>
+          <div style={styles.controlIcon} className="hide-on-mobile" onClick={() => setIsMaximized(!isMaximized)}><Square size={13} /></div>
           <div style={{...styles.controlIcon, ...styles.closeIcon}} onClick={onClose}><X size={16} /></div>
         </div>
       </div>
