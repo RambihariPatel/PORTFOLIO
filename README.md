@@ -54,7 +54,7 @@ Provide recruiters a clear view of my work
 Build a strong online developer presence
 🔗 Live Demo ...
 
-👉 https://rambihari-portfolio.netlify.app
+👉 https://rambihariportfolio.vercel.app/
 
 📬 Contact
 
